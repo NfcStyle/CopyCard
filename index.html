@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NfcStyle</title>
+    <link rel="icon" href="Logo.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Используемый шрифт */
+            text-align: center; /* Выравнивание текста по центру */
+        }
+
+        .logo {
+            width: 50px; /* Ширина логотипа */
+            vertical-align: middle; /* Выравнивание логотипа по вертикали */
+        }
+
+        .nfcData {
+            font-size: 32px; /* Размер шрифта */
+            margin-bottom: 20px; /* Отступ снизу */
+        }
+
+        .copyButton {
+            font-size: 18px; /* Размер шрифта кнопки */
+            padding: 10px 20px; /* Внутренние отступы кнопки */
+            border: none; /* Убираем границы кнопки */
+            border-radius: 20px; /* Задаем закругленные углы */
+            color: #fff; /* Цвет текста кнопки */
+            cursor: pointer; /* Изменяем курсор при наведении на кнопку */
+            transition: all 0.3s ease; /* Анимация при наведении на кнопку */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Тень кнопки */
+            margin-bottom: 10px; /* Отступ снизу кнопки */
+        }
+
+        .copyButton:hover {
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5); /* Изменяем тень при наведении */
+        }
+
+        .copyButton:active {
+            background-color: #367d3b; /* Изменяем цвет фона при нажатии на кнопку */
+        }
+
+        .firstCopyButton {
+            background-color: #4EA524; /* Цвет фона первой кнопки */
+        }
+
+        .secondCopyButton {
+            background-color: #000; /* Цвет фона второй кнопки */
+        }
+
+        /* Добавленные стили для создания отступа между группами элементов */
+        .group {
+            margin-bottom: 50px; /* Большой отступ между группами */
+        }
+    </style>
+</head>
+<body>
+    <div class="group">
+        <img class="logo" src="Privat.png" alt="Bank Logo"> <!-- Изображение банковской эмблемы -->
+        <div class="nfcData">1111222233334444</div>
+        <button class="copyButton firstCopyButton" onclick="copyToClipboard(1)">Копіювати</button>
+    </div>
+    <div>
+        <img class="logo" src="Mono.png" alt="Another Logo"> <!-- Изображение Mono -->
+        <div class="nfcData">5555666677778888</div>
+        <button class="copyButton secondCopyButton" onclick="copyToClipboard(2)">Копіювати</button>
+    </div>
+
+    <script>
+        function copyToClipboard(buttonNum) {
+            const nfcData = document.querySelectorAll('.nfcData');
+            let dataToCopy = '';
+            if (buttonNum === 1) {
+                dataToCopy = nfcData[0].innerText;
+            } else if (buttonNum === 2) {
+                dataToCopy = nfcData[1].innerText;
+            }
+            navigator.clipboard.writeText(dataToCopy)
+                .then(() => {
+                    alert('Номер картки скопійовано');
+                })
+                .catch(err => {
+                    console.error('Не вдалось скопіювати номер картки: ', err);
+                });
+        }
+    </script>
+</body>
+</html>
